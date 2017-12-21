@@ -13,6 +13,6 @@ axios.interceptors.response.use(config => {
   Toast.hide()
   return config
 }, error => {
-  Toast.fail()
+  Toast.fail('加载失败...', 1)
   console.log('get data error.')
 })

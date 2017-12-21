@@ -29,6 +29,7 @@ router.post('/login', async (req, res) => {
     if(exist) return res.json({code: 0, result: '登录成功~~~'})
     else return res.json({code: 1, result: '用户名或密码不正确'})
   } catch (error) {
+    res.json({code: 1, result: error.message})
   }
 })
 // define the about route

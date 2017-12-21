@@ -22,13 +22,23 @@ function errorMsg(msg) {
 }
 
 export function register({name, pwd, rpwd, type}) {
-  console.log('1212')
   if(!name || !pwd || !rpwd) return errorMsg('用户名和密码不能为空.')
   if(pwd !== rpwd) return errorMsg('两次密码输入不一致')
   return dispatch => {
     axios.post('/user/register', {name, pwd, type})
       .then(r => {
         console.log(r)
+        return errorMsg('121212')
+      })
+      .catch(e => errorMsg(e.message))
+  }
+}
+
+export function login({name, pwd}) {
+  if(!name || !pwd) return errorMsg('用户名和密码不能为空.')
+  return dispatch => {
+    axios.post('/user/login', {name, pwd})
+      .then(r => {
         return errorMsg('121212')
       })
       .catch(e => errorMsg(e.message))
