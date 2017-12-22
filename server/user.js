@@ -96,7 +96,9 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/logout', async (req, res) => {
-
+  res.clearCookie('sessionId')
+  res.clearCookie('name')
+  res.json({code: 1, result: '退出成功'})
 })
 
 
