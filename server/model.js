@@ -5,7 +5,7 @@ const model = {
     name: { type: String, required: true },
     pwd: { type: String, required: true },
     type: { type: String, enum: ['buyer', 'seller'], required: true },
-    avator: { type: String },
+    avator: { type: String }
   }
 }
 Object.keys(model).forEach(item => {

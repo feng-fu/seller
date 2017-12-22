@@ -30,7 +30,7 @@ const setSession = async (redis, name) => {
   await redis.disconnect()
   return val
   } catch (error) {
-    console.log('err:', err)
+    console.log('err:', error)
     throw new Error('connect redis error.')
   }
 }
