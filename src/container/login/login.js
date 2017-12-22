@@ -1,5 +1,5 @@
 import React from 'react'
-import { WingBlank, WhiteSpace, Button, InputItem, Radio, List } from 'antd-mobile';
+import { WingBlank, WhiteSpace, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { login } from './../../redux/user'
 
@@ -33,7 +33,7 @@ class Login extends React.Component {
       <WingBlank>
         <InputItem value={this.state.name} onChange={val => this.changeState('name', val)}>用户名</InputItem>
         <WhiteSpace />
-        <InputItem value={this.state.pwd} onChange={val => this.changeState('pwd', val)}>密码</InputItem>
+        <InputItem value={this.state.pwd} onChange={val => this.changeState('pwd', val)} type="password">密码</InputItem>
         <WhiteSpace />
         <WhiteSpace size="lg" />
         <Button type="primary" onClick={this.login}>登录</Button>

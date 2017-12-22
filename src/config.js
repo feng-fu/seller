@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Toast } from 'antd-mobile'
 axios.interceptors.request.use(config => {
   console.log('start request data.')
-  Toast.loading('加载中')
+  Toast.loading('加载中...')
   return config
 }, error => {
   console.log('send data error.')

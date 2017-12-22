@@ -1,24 +1,39 @@
 import axios from 'axios'
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const ERROR_OCCURED = 'ERROR_OCCURED'
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+const LOGIN_OUT = 'LOGIN_OUT'
+const UPDATE_USERINFO = 'UPDATE_USERINFO'
 
-const initState = {isAuth: false, errorMsg: ''}
+const initState = {isAuth: false, errorMsg: '', redirctTo: '/login'}
 export function user(state=initState, action) {
   switch (action.type) {
-    case LOGIN_SUCCESS:
-      return { ...state, isAuth: true }
+    case AUTH_SUCCESS:
+      return { ...state, errorMsg: '', isAuth: true }
+    case UPDATE_USERINFO:
+      return {...state, errorMsg: '', ...action.payload}
     case ERROR_OCCURED:
-      return { ...state, isAuth: false, ...action.payload }
-    case REGISTER_SUCCESS:
-      return { ...state, isAuth: true }
+      return { ...state, isAuth: false, errorMsg: action.errorMsg }
+    case LOGIN_OUT:
+      return initState
     default:
       return state
   }
 }
 
 function errorMsg(msg) {
-  return {type: ERROR_OCCURED, errorMsg: msg}
+  return { type: ERROR_OCCURED, errorMsg: msg }
+}
+
+function quitLogin(result) {
+  return { type: LOGIN_OUT, payload: result }
+}
+
+function authSuccess(result) {
+  return { type: AUTH_SUCCESS, payload: result }
+}
+
+function updateUserInfo(result) {
+  return { type: UPDATE_USERINFO, payload: result }
 }
 
 export function register({name, pwd, rpwd, type}) {
@@ -27,10 +42,13 @@ export function register({name, pwd, rpwd, type}) {
   return dispatch => {
     axios.post('/user/register', {name, pwd, type})
       .then(r => {
-        console.log(r)
-        return errorMsg('121212')
+        r = r.data
+        if(r && r.code === 0) {
+          return dispatch(authSuccess(r.result))
+        }
+        return dispatch(errorMsg(r.msg))
       })
-      .catch(e => errorMsg(e.message))
+      .catch(e => dispatch(errorMsg(e.message)))
   }
 }
 
@@ -39,8 +57,42 @@ export function login({name, pwd}) {
   return dispatch => {
     axios.post('/user/login', {name, pwd})
       .then(r => {
-        return errorMsg('121212')
+        r = r.data
+        if(r && r.code === 0) {
+          return dispatch(authSuccess(r.result))
+        } else {
+          return dispatch(errorMsg(r.msg))
+        }
       })
-      .catch(e => errorMsg(e.message))
+      .catch(e => dispatch(errorMsg(e.message)))
+  }
+}
+
+export function userInfo() {
+  return dispatch => {
+    axios.get('/user')
+      .then(r => {
+        r = r.data
+        if(r && r.code === 0) {
+          return dispatch(updateUserInfo(r.result))
+        } else {
+          return dispatch(errorMsg(r.msg))
+        }
+      })
+      .catch(e => dispatch(errorMsg(e.message)))
+  }
+}
+
+export function logout() {
+  return dispatch => {
+    axios.post('/user/logout')
+      .then(r => {
+        r = r.data
+        if(r && r.code === 0) {
+          return dispatch(quitLogin())
+        } else {
+          return dispatch(errorMsg(r.msg))
+        }
+      })
   }
 }

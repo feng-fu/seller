@@ -35,9 +35,9 @@ class Register extends React.Component {
       <WingBlank>
         <InputItem value={this.state.name} onChange={val => this.changeState('name', val)}>用户名</InputItem>
         <WhiteSpace />
-        <InputItem value={this.state.pwd} onChange={val => this.changeState('pwd', val)}>密码</InputItem>
+        <InputItem value={this.state.pwd} onChange={val => this.changeState('pwd', val)} type="password">密码</InputItem>
         <WhiteSpace />
-        <InputItem value={this.state.rpwd} onChange={val => this.changeState('rpwd', val)}>重复密码</InputItem>
+        <InputItem value={this.state.rpwd} onChange={val => this.changeState('rpwd', val)} type="password">重复密码</InputItem>
         <WhiteSpace />
         <List>
           <RadioItem checked={this.state.type==='buyer'} onChange={e => this.changeState('type', 'buyer')}>买家</RadioItem>

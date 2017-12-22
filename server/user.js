@@ -58,9 +58,8 @@ router.post('/login', async (req, res) => {
     const exist = await UserModel.findOne({name, pwd: password})
     if(exist) {
       const sessionId = await setSession(redis, name)
-      console.log(sessionId)
-      res.cookie('sessionId', sessionId, { maxAge: 1440000000, httpOnly: true })
-      res.cookie('name', name, { maxAge: 1440000000, httpOnly: true })
+      res.cookie('sessionId', sessionId, { maxAge: 144000000, httpOnly: true })
+      res.cookie('name', name, { maxAge: 144000000, httpOnly: true })
       return res.json({code: 0, result: filter(exist)})
     }
     else return res.json({code: 1, msg: '用户名或密码不正确'})
@@ -82,8 +81,8 @@ router.post('/register', async (req, res) => {
     const password = await secret(pwd)
     const result = await UserModel.create({name, pwd: password, type})
     const sessionId = await setSession(redis, name)
-    res.cookie('sessionId', sessionId, { maxAge: 1440000000, httpOnly: true })
-    res.cookie('name', name, { maxAge: 1440000000, httpOnly: true })
+    res.cookie('sessionId', sessionId, { maxAge: 144000000, httpOnly: true })
+    res.cookie('name', name, { maxAge: 144000000, httpOnly: true })
     res.send({code: 0, result: filter(result)})
   } catch (error) {
     console.log(error.stack)
