@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { redirectPosition } from './../utils'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const ERROR_OCCURED = 'ERROR_OCCURED'
 const LOGIN_OUT = 'LOGIN_OUT'
@@ -8,7 +9,7 @@ const initState = {isAuth: false, errorMsg: '', redirctTo: '/login'}
 export function user(state=initState, action) {
   switch (action.type) {
     case AUTH_SUCCESS:
-      return { ...state, errorMsg: '', isAuth: true }
+      return { ...state, errorMsg: '',redirctTo: redirectPosition(action.payload), isAuth: true }
     case UPDATE_USERINFO:
       return {...state, errorMsg: '', ...action.payload}
     case ERROR_OCCURED:
@@ -20,7 +21,7 @@ export function user(state=initState, action) {
   }
 }
 
-function errorMsg(msg) {
+export function errorMsg(msg) {
   return { type: ERROR_OCCURED, errorMsg: msg }
 }
 
@@ -32,7 +33,7 @@ function authSuccess(result) {
   return { type: AUTH_SUCCESS, payload: result }
 }
 
-function updateUserInfo(result) {
+export function updateUserInfo(result) {
   return { type: UPDATE_USERINFO, payload: result }
 }
 

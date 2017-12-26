@@ -16,7 +16,6 @@ module.exports = (req, res, next) => {
         console.log('redis find data error:', e.stack)
         return res.json({code: 1, msg: '服务器出错'})
       }
-      console.log(d, sessionId)
       if(d !== sessionId) return res.json({code:1, msg: '登录超时'})
       next()
     })
