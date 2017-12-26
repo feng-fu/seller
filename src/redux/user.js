@@ -4,18 +4,21 @@ const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const ERROR_OCCURED = 'ERROR_OCCURED'
 const LOGIN_OUT = 'LOGIN_OUT'
 const UPDATE_USERINFO = 'UPDATE_USERINFO'
+const CLEAR_REDIRECT = 'CLEAR_REDIRECT'
 
-const initState = {isAuth: false, errorMsg: '', redirctTo: '/login'}
+const initState = { errorMsg: '', redirctTo: '/login'}
 export function user(state=initState, action) {
   switch (action.type) {
     case AUTH_SUCCESS:
-      return { ...state, errorMsg: '',redirctTo: redirectPosition(action.payload), isAuth: true }
+      return { ...state, errorMsg: '',redirctTo: '/', ...action.payload }
     case UPDATE_USERINFO:
-      return {...state, errorMsg: '', ...action.payload}
+      return {...state, errorMsg: '', redirctTo: '', ...action.payload}
     case ERROR_OCCURED:
-      return { ...state, isAuth: false, errorMsg: action.errorMsg }
+      return { ...state, errorMsg: action.errorMsg }
     case LOGIN_OUT:
       return initState
+    case CLEAR_REDIRECT:
+      return {...state, redirctTo: ''}
     default:
       return state
   }
@@ -23,6 +26,10 @@ export function user(state=initState, action) {
 
 export function errorMsg(msg) {
   return { type: ERROR_OCCURED, errorMsg: msg }
+}
+
+export function clearRedirect() {
+  return { type: CLEAR_REDIRECT }
 }
 
 function quitLogin(result) {

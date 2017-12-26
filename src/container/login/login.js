@@ -1,11 +1,12 @@
 import React from 'react'
 import { WingBlank, WhiteSpace, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { login } from './../../redux/user'
+import { login, clearRedirect } from './../../redux/user'
+import { Redirect } from 'react-router'
 
 @connect(
   state=> state.user,
-  { login }
+  { login, clearRedirect }
 )
 class Login extends React.Component {
   constructor(props) {
@@ -16,6 +17,9 @@ class Login extends React.Component {
     }
     this.toRegister = this.toRegister.bind(this)
     this.login = this.login.bind(this)
+  }
+  componentWillMount() {
+    this.props.clearRedirect()
   }
   changeState(key, val) {
     this.setState({
@@ -29,7 +33,7 @@ class Login extends React.Component {
     this.props.history.push('/register')
   }
   render() {
-    return (
+    return this.props.redirctTo && this.props.redirctTo !== this.props.match.path ? (<Redirect to={this.props.redirctTo} />) : (
       <WingBlank>
         <InputItem value={this.state.name} onChange={val => this.changeState('name', val)}>用户名</InputItem>
         <WhiteSpace />

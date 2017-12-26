@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { register } from './../../redux/user'
 import { WingBlank, WhiteSpace, Button, InputItem, Radio, List } from 'antd-mobile';
+import { Redirect } from 'react-router'
 const RadioItem = Radio.RadioItem;
 @connect(
   state => state.user,
@@ -31,7 +32,7 @@ class Register extends React.Component {
     this.props.history.push('/login')
   }
   render() {
-    return (
+    return this.props.redirctTo && this.props.redirctTo !== this.props.match.path ? (<Redirect to={this.props.redirctTo} />) : (
       <WingBlank>
         <InputItem value={this.state.name} onChange={val => this.changeState('name', val)}>用户名</InputItem>
         <WhiteSpace />

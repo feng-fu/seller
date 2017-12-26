@@ -46,6 +46,7 @@ export default class extends React.Component {
     ]
     const pathname = this.props.location.pathname
     const menuList = this.props.type ? menu.filter(v => v.hide !== this.props.type) : menu
+    console.log(this.props)
     return (
       <div className="dashborad">
         <NavBar
