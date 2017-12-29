@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { redirectPosition } from './../utils'
+// import { redirectPosition } from './../utils'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const ERROR_OCCURED = 'ERROR_OCCURED'
 const LOGIN_OUT = 'LOGIN_OUT'

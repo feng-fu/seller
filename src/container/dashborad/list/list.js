@@ -1,20 +1,42 @@
 import React from 'react'
-import { WingBlank, Button } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { clearRedirect } from './../../../redux/user'
-import { Redirect } from 'react-router-dom'
+import axios from 'axios'
+import GoodsCard from './../../../component/goodsCard/goodsCard'
 @connect(
   state => state.user,
   { clearRedirect }
 )
 
 export default class List extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: []
+    }
+  }
   componentWillMount() {
     this.props.clearRedirect()
   }
+  componentDidMount() {
+    this.getGoodsList()
+  }
+  getGoodsList() {
+    axios.get('/goods/list')
+      .then(r => {
+        r = r.data
+        if(r && r.success) {
+          this.setState({
+            list: r.result
+          })
+        }
+      })
+  }
   render() {
     return (
-      <div>商品列表</div>
+      <div>
+        <GoodsCard list={this.state.list}></GoodsCard>
+      </div>
     )
   }
 }
