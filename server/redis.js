@@ -5,6 +5,6 @@ const redis = new Redis({
   password: 'chen19960119',
   db: 0
 })
-redis.disconnect()
+// redis.disconnect()
 
 module.exports = redis

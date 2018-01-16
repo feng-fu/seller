@@ -34,3 +34,12 @@ body {
   left: 0;
   width: 100%;
 }
+.el-logo-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
+.el-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 40% 40% 40% 40%;
+}

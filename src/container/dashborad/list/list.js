@@ -25,7 +25,8 @@ export default class List extends React.Component {
     axios.get('/goods/list')
       .then(r => {
         r = r.data
-        if(r && r.success) {
+        console.log(r)
+        if(r && r.code === 0) {
           this.setState({
             list: r.result
           })
@@ -35,7 +36,11 @@ export default class List extends React.Component {
   render() {
     return (
       <div>
-        <GoodsCard list={this.state.list}></GoodsCard>
+        {
+          this.state.list.map(v => (
+            <GoodsCard {...v} key={v._id}></GoodsCard>
+          ))
+        }
       </div>
     )
   }

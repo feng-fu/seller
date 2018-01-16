@@ -24,18 +24,16 @@ const filter = data => {
 }
 const setSession = async (redis, name) => {
   try {
-  await redis.connect()
+  // await redis.connect()
   const val = uuidV4()
   await redis.setex(name, 1440000, val)
-  await redis.disconnect()
+  // await redis.disconnect()
   return val
   } catch (error) {
     console.log('err:', error)
     throw new Error('connect redis error.')
   }
 }
-
-
 
 router.get('/', async (req, res) => {
   const { name } = req.cookies

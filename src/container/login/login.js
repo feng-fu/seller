@@ -3,6 +3,7 @@ import { WingBlank, WhiteSpace, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { login, clearRedirect } from './../../redux/user'
 import { Redirect } from 'react-router'
+import Logo from './../../component/logo/logo'
 
 @connect(
   state=> state.user,
@@ -35,6 +36,7 @@ class Login extends React.Component {
   render() {
     return this.props.redirctTo && this.props.redirctTo !== this.props.match.path ? (<Redirect to={this.props.redirctTo} />) : (
       <WingBlank>
+        <Logo />
         <InputItem value={this.state.name} onChange={val => this.changeState('name', val)}>用户名</InputItem>
         <WhiteSpace />
         <InputItem value={this.state.pwd} onChange={val => this.changeState('pwd', val)} type="password">密码</InputItem>

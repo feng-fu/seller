@@ -1,22 +1,22 @@
 import React from 'react'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
-export default class GoodsCard extends React.Component {
-  render() {
-    return (
-      <WingBlank size="lg">
-        <WhiteSpace size="lg" />
-          <Card>
-            <Card.Header
-              title="This is title"
-              extra={<span>this is extra</span>}
-            />
-            <Card.Body>
-              <div>This is content of `Card`</div>
-            </Card.Body>
-            <Card.Footer content="footer content" extra={<div>extra footer content</div>} />
-          </Card>
-        <WhiteSpace size="lg" />
-      </WingBlank>
-    )
-  }
+import moment from 'moment'
+moment.locale('zh-cn')
+export default props => {
+  console.log(props)
+  return (
+    <WingBlank size="lg">
+      <WhiteSpace size="sm" />
+        <Card>
+          <Card.Header
+            title={props.title}
+            extra={<span>￥{props.price}</span>}
+          />
+          <Card.Body>
+            <div>{props.desc}</div>
+          </Card.Body>
+          <Card.Footer content={`来自${props.user}`} extra={<div>{moment().from(props.create_time)}</div>} />
+        </Card>
+    </WingBlank>
+  )
 }

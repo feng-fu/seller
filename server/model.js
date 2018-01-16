@@ -13,7 +13,8 @@ const model = {
     price: { type: Number, required: true },
     user: { type: String, required: true },
     query_id: {type: String, default: uuid.v4() },
-    desc: { type: String }
+    desc: { type: String },
+    create_time: {type: Date, default: new Date()}
   }
 }
 Object.keys(model).forEach(item => {
