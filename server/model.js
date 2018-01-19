@@ -6,7 +6,7 @@ const model = {
     name: { type: String, required: true },
     pwd: { type: String, required: true },
     type: { type: String, enum: ['buyer', 'seller'], required: true },
-    avator: { type: String }
+    avatar: { type: String, default: 'http://petrify.oss-cn-beijing.aliyuncs.com/avatar.png' }
   },
   goods: {
     title: { type: String, required: true },

@@ -4,6 +4,7 @@ import { register } from './../../redux/user'
 import { WingBlank, WhiteSpace, Button, InputItem, Radio, List } from 'antd-mobile';
 import { Redirect } from 'react-router'
 import Logo from './../../component/logo/logo'
+
 const RadioItem = Radio.RadioItem;
 @connect(
   state => state.user,
@@ -16,7 +17,7 @@ class Register extends React.Component {
       name: '',
       pwd: '',
       rpwd: '',
-      type: 'buyer'
+      type: 'buyer',
     }
     this.register = this.register.bind(this)
     this.toLogin = this.toLogin.bind(this)

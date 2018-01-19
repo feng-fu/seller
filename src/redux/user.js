@@ -6,7 +6,7 @@ const LOGIN_OUT = 'LOGIN_OUT'
 const UPDATE_USERINFO = 'UPDATE_USERINFO'
 const CLEAR_REDIRECT = 'CLEAR_REDIRECT'
 
-const initState = { errorMsg: '', redirctTo: '/login'}
+const initState = { errorMsg: '', redirctTo: '/login', avatar: 'http://petrify.oss-cn-beijing.aliyuncs.com/avatar.png' }
 export function user(state=initState, action) {
   switch (action.type) {
     case AUTH_SUCCESS:
@@ -88,6 +88,27 @@ export function userInfo() {
         }
       })
       .catch(e => dispatch(errorMsg(e.message)))
+  }
+}
+
+export function changeAvatar(avatar) {
+  const form = new FormData()
+  form.append('avatar', avatar)
+  return dispatch => {
+    axios.post('/upload/avatar', form, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(r => {
+         r = r.data
+        if(r && r.code === 0) {
+          return dispatch(updateUserInfo(r.result))
+        } else {
+          return dispatch(errorMsg(r.msg))
+        }
+      })
+      .catch(e => dispatch(errorMsg(e.msg)))
   }
 }
 

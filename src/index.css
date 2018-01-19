@@ -43,3 +43,10 @@ body {
   height: 60px;
   border-radius: 40% 40% 40% 40%;
 }
+.font-center {
+  text-align: center;
+}
+
+.avatar {
+  border-radius: 50%;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { WingBlank, WhiteSpace, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { login, clearRedirect } from './../../redux/user'
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router-dom'
 import Logo from './../../component/logo/logo'
 
 @connect(

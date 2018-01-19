@@ -18,6 +18,7 @@ module.exports = (req, res, next) => {
         return res.json({code: 1, msg: '服务器出错'})
       }
       if(d !== sessionId) return res.json({code:1, msg: '登录超时'})
+      req.userName = name
       next()
     })
   // })
