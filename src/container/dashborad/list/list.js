@@ -25,7 +25,6 @@ export default class List extends React.Component {
     axios.get('/goods/list')
       .then(r => {
         r = r.data
-        console.log(r)
         if(r && r.code === 0) {
           this.setState({
             list: r.result

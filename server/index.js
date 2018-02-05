@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+  console.log(err.stack)
   console.log('something is error.')
   res.json({code: 1, msg: 'server error occured.'})
 })

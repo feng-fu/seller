@@ -16,6 +16,7 @@ const auth = async (req, res, next) => {
     return res.json({code:1, msg: '无权限'})
   }
 }
+// seller才可以发布
 
 router
   .post('/add', auth, async (req, res) => {
@@ -30,7 +31,7 @@ router
       res.json({code: 1, msg: '服务器错误'})
     }
   })
-  .post('/update', auth, async (req, res) => {
+  .post('/update', auth, async (req, res, next) => {
     const { query_id, title, desc, price } = req.body
     if(!query_id) return res.json({code: 1, msg: 'query_id 不存在'})
     try {
@@ -42,7 +43,7 @@ router
       res.json({code: 0, result})
     } catch (error) {
       console.log('update goods error:', error.stack);
-      return res.json({code: 1, msg: '服务器错误'});
+      next(error)
     }
   })
   .get('/list', async (req, res) => {
@@ -52,7 +53,7 @@ router
       return res.json({code: 0, result})
     } catch (error) {
       console.log('get goods list error: ', error.stack);
-      return res.json({code: 1, msg: '服务器错误'});
+      next(error)
     }
   })
 
