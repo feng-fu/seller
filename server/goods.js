@@ -46,7 +46,7 @@ router
       next(error)
     }
   })
-  .get('/list', async (req, res) => {
+  .get('/list', async (req, res, next) => {
     // page pagesize
     try {
       const result = await goodsModel.find({})
