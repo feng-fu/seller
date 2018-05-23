@@ -11,7 +11,7 @@ import reducer from './reducer';
 import Login from './container/login/login'
 import Register from './container/register/register'
 import Dashborad from './container/dashborad/dashborad'
-import Auth from './component/auth/auth'
+import Authorized from './component/Authorized/'
 
 const store = createStore(
   reducer,
@@ -24,12 +24,15 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Auth></Auth>
         <Switch>
           <Route path='/login' component={Login}/>
           <Route path='/register' component={Register}/>
-          <Route component={Dashborad}/>
-          
+          <Authorized
+            path="/"
+            redirectPath="/login"
+          >
+            <Dashborad />
+          </Authorized>
         </Switch>
       </div>
     </BrowserRouter>

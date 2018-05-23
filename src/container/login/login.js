@@ -1,13 +1,13 @@
 import React from 'react'
 import { WingBlank, WhiteSpace, Button, InputItem } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { login, clearRedirect } from './../../redux/user'
+import { login } from './../../redux/user'
 import { Redirect } from 'react-router-dom'
 import Logo from './../../component/logo/logo'
 
 @connect(
   state=> state.user,
-  { login, clearRedirect }
+  { login }
 )
 class Login extends React.Component {
   constructor(props) {
@@ -18,9 +18,6 @@ class Login extends React.Component {
     }
     this.toRegister = this.toRegister.bind(this)
     this.login = this.login.bind(this)
-  }
-  componentWillMount() {
-    this.props.clearRedirect()
   }
   changeState(key, val) {
     this.setState({

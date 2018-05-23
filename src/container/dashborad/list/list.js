@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { clearRedirect } from './../../../redux/user'
 import axios from 'axios'
 import GoodsCard from './../../../component/goodsCard/goodsCard'
 @connect(
-  state => state.user,
-  { clearRedirect }
+  state => state.user
 )
 
 export default class List extends React.Component {
@@ -14,9 +12,6 @@ export default class List extends React.Component {
     this.state = {
       list: []
     }
-  }
-  componentWillMount() {
-    this.props.clearRedirect()
   }
   componentDidMount() {
     this.getGoodsList()

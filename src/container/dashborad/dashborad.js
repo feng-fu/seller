@@ -6,11 +6,13 @@ import List from './list/list'
 import Message from './message/message'
 import Me from './me/me'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 @connect(
   state => state.user,
   {}
 )
 
+@withRouter
 export default class extends React.Component {
   render() {
     const menu = [
