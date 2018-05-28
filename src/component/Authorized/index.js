@@ -18,8 +18,7 @@ export default class Auth extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      init: false,
-      isAuth: false
+      init: false
     }
   }
   componentDidMount() {
@@ -27,7 +26,7 @@ export default class Auth extends React.Component {
     const pathname = this.props.match.path
     if(keepList.indexOf(pathname) > -1) return
 
-    axios.get('/user')
+    axios.get('/v1/user')
     .then(r => {
       r = r.data
       if(r && r.code === 0) {
@@ -52,7 +51,7 @@ export default class Auth extends React.Component {
   render() {
     const { isAuth } = this.props
     return this.state.init ? (
-      isAuth ? this.props.children : <NoMatch path="/login" />
+      isAuth ? this.props.children : <NoMatch path="/user/login" />
     ) : <Loading />
   }
 }

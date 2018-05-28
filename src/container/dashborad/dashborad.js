@@ -6,27 +6,24 @@ import List from './list/list'
 import Message from './message/message'
 import Me from './me/me'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 @connect(
   state => state.user,
   {}
 )
-
-@withRouter
 export default class extends React.Component {
   render() {
     const menu = [
       {
         title:'商品列表',
         desc:'商品列表',
-        path: '/list',
+        path: '/dashboard/list',
         icon: 'icon-sell',
         component: List
       },
       {
         title: '管理',
         desc: '管理',
-        path: '/manager',
+        path: '/dashboard/manager',
         icon: 'icon-operationandmaintenancemanagement0101',
         component: Manager,
         hide: 'buyer'
@@ -34,14 +31,14 @@ export default class extends React.Component {
       {
         title: '消息',
         desc: '消息中心',
-        path: '/message',
+        path: '/dashboard/message',
         icon: 'icon-chat',
         component: Message
       },
       {
         title: '我',
         desc: '个人中心',
-        path: '/me',
+        path: '/dashboard/me',
         icon: 'icon-me',
         component: Me
       }
@@ -59,7 +56,7 @@ export default class extends React.Component {
             {menuList.map(v=> (
               <Route key={v.path} path={v.path} component={v.component}/>
             ))}
-            <Redirect to='/list' />
+            <Redirect exact from="/dashboard" to="/dashboard/list" />
           </Switch>
         </div>
         <div className="fixed-bottom">

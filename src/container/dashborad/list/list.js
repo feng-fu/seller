@@ -17,7 +17,7 @@ export default class List extends React.Component {
     this.getGoodsList()
   }
   getGoodsList() {
-    axios.get('/goods/list')
+    axios.get('/v1/goods/list')
       .then(r => {
         r = r.data
         if(r && r.code === 0) {

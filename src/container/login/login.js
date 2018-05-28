@@ -28,7 +28,7 @@ class Login extends React.Component {
     this.props.login(this.state)
   }
   toRegister() {
-    this.props.history.push('/register')
+    this.props.history.push('/user/register')
   }
   render() {
     return this.props.redirctTo && this.props.redirctTo !== this.props.match.path ? (<Redirect to={this.props.redirctTo} />) : (

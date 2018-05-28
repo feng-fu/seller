@@ -1,4 +1,4 @@
-const excludeList = ['/user/login', '/user/register']
+const excludeList = ['/v1/user/login', '/v1/user/register']
 module.exports = (req, res, next) => {
   if(excludeList.indexOf(req.path) > -1) return next()
   const redis = req.redis
