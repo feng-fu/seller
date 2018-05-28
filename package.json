@@ -44,6 +44,7 @@
     "raf": "3.4.0",
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",
+    "react-document-title": "^2.0.3",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -72,7 +73,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "server": "nodemon --watch server server/index.js"
+    "server": "nodemon --watch server server/index.js",
+    "serve": "node server server/index.js"
   },
   "jest": {
     "collectCoverageFrom": [

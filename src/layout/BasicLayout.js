@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Route, Redirect } from 'react-router-dom'
+import DashBoard from './../container/dashborad/dashborad'
 
 export default class BasicLayout extends React.Component {
   constructor(props) {
@@ -6,6 +8,11 @@ export default class BasicLayout extends React.Component {
     this.state = {}    
   }
   render() {
-    return null
+    return (
+      <Fragment>
+        <Route path="/dashboard" component={DashBoard} />
+        <Redirect exact from="/" to="/dashboard" />
+      </Fragment>
+    )
   }
 }

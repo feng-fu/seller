@@ -43,7 +43,7 @@ export function register({name, pwd, rpwd, type}) {
   if(!name || !pwd || !rpwd) return errorMsg('用户名和密码不能为空.')
   if(pwd !== rpwd) return errorMsg('两次密码输入不一致')
   return dispatch => {
-    axios.post('/user/register', { name, pwd, type })
+    axios.post('/v1/user/register', { name, pwd, type })
       .then(r => {
         r = r.data
         if(r && r.code === 0) {
@@ -58,7 +58,7 @@ export function register({name, pwd, rpwd, type}) {
 export function login({name, pwd}) {
   if(!name || !pwd) return errorMsg('用户名和密码不能为空.')
   return dispatch => {
-    axios.post('/user/login', { name, pwd })
+    axios.post('/v1/user/login', { name, pwd })
       .then(r => {
         r = r.data
         if(r && r.code === 0) {
@@ -73,7 +73,7 @@ export function login({name, pwd}) {
 
 export function userInfo() {
   return dispatch => {
-    axios.get('/user')
+    axios.get('/v1/user')
       .then(r => {
         r = r.data
         if(r && r.code === 0) {
@@ -90,7 +90,7 @@ export function changeAvatar(avatar) {
   const form = new FormData()
   form.append('avatar', avatar)
   return dispatch => {
-    axios.post('/upload/avatar', form, {
+    axios.post('/v1/upload/avatar', form, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -109,7 +109,7 @@ export function changeAvatar(avatar) {
 
 export function logout() {
   return dispatch => {
-    axios.post('/user/logout')
+    axios.post('/v1/user/logout')
       .then(r => {
         r = r.data
         if(r && r.code === 0) {

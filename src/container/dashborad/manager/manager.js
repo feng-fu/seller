@@ -20,7 +20,7 @@ export default class Manager extends React.Component {
   }
   publishGoodsHandle() {
     
-    axios.post(`/goods/add`, this.state)
+    axios.post(`/v1/goods/add`, this.state)
       .then(r => {
         console.log(r)
       })

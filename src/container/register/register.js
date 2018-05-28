@@ -31,7 +31,7 @@ class Register extends React.Component {
     })
   }
   toLogin() {
-    this.props.history.push('/login')
+    this.props.history.push('/user/login')
   }
   render() {
     return this.props.redirctTo && this.props.redirctTo !== this.props.match.path ? (<Redirect to={this.props.redirctTo} />) : (

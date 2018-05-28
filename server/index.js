@@ -20,9 +20,9 @@ app.use(function(req, res, next) {
   next()
 });
 app.use(auth);
-app.use('/user', user);
-app.use('/goods', goods);
-app.use('/upload', upload);
+app.use('/v1/user', user);
+app.use('/v1/goods', goods);
+app.use('/v1/upload', upload);
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'public/404.html'), {}, err => {
